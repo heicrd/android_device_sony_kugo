@@ -14,13 +14,18 @@
 
 TARGET_KERNEL_CONFIG := aosp_loire_kugo_defconfig
 
+# Bootanimation
+TARGET_BOOTANIMATION_SIZE := 720x407
+
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/kugo/device.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-PRODUCT_NAME := aosp_f5321
+PRODUCT_NAME := lineage_kugo
 PRODUCT_DEVICE := kugo
-PRODUCT_MODEL := Xperia X Compact (AOSP)
+PRODUCT_MODEL := F5321
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
