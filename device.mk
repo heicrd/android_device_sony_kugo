@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
+
 # Device path
 DEVICE_PATH := device/sony/kugo
 
@@ -75,6 +78,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/loire-common/platform_omni.mk)
 $(call inherit-product, vendor/sony/loire-kugo/kugo-vendor.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # copy wlan firmware
-$(call inherit-product-if-exists, vendor/sony/aosp_broadcom/wlan/bcmdhd/firmware/bcm4345/device-bcm.mk)
+$(call inherit-product-if-exists, vendor/broadcom/wlan/bcmdhd/firmware/bcm4345/device-bcm.mk)
