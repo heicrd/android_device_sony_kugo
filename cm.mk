@@ -19,13 +19,17 @@ TARGET_BOOTANIMATION_SIZE := 720x407
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/kugo/device.mk)
+$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 PRODUCT_NAME := lineage_kugo
 PRODUCT_DEVICE := kugo
 PRODUCT_MODEL := F5321
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
+
+# Kugo Props
+TARGET_SYSTEM_PROP += device/sony/kugo/system.prop

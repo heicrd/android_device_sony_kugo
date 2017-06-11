@@ -22,14 +22,22 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay
 
 PRODUCT_COPY_FILES := \
-    $(DEVICE_PATH)/rootdir/system/etc/audio_policy.conf:system/etc/audio_policy.conf \
     $(DEVICE_PATH)/rootdir/system/etc/BCM4345.hcd:system/etc/firmware/BCM43xx.hcd \
     $(DEVICE_PATH)/rootdir/system/etc/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal \
     $(DEVICE_PATH)/rootdir/system/etc/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
     $(DEVICE_PATH)/rootdir/system/etc/thermanager.xml:system/etc/thermanager.xml \
     $(DEVICE_PATH)/rootdir/system/etc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(DEVICE_PATH)/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    $(DEVICE_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(DEVICE_PATH)/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
+
+# Audio
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/rootdir/system/vendor/etc/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
+    $(DEVICE_PATH)/rootdir/system/vendor/etc/audio_policy.conf:system/vendor/etc/audio_policy.conf \
+    $(DEVICE_PATH)/rootdir/system/etc/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/audio_policy_configuration.xml:/system/etc/audio_policy_configuration.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/mixer_paths_wcd9335.xml:system/etc/mixer_paths_wcd9335.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
 
 # Device Specific Permissions
 PRODUCT_COPY_FILES += \
@@ -77,8 +85,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/loire-common/platform_omni.mk)
-$(call inherit-product, vendor/sony/loire-kugo/kugo-vendor.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, vendor/sony/loire-kugo-caf/kugo-vendor.mk)
 
 # copy wlan firmware
 $(call inherit-product-if-exists, vendor/broadcom/wlan/bcmdhd/firmware/bcm4345/device-bcm.mk)
